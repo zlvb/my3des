@@ -1,7 +1,7 @@
 #include "3Des.h"
 #include <memory.h>
 
-using namespace UTlDes;
+using namespace my3des;
 
 ///////////////////////////////////////////////////////////////////
 //------------------------< 初始密钥 >----------------------------
@@ -33,35 +33,35 @@ static bool __RET = MakeKey(POL_PREKEY,THE_SUBKEY);
 /*>--------------------------------------------------------------<*/
 /*>	解密
 /*>--------------------------------------------------------------<*/
-unsigned char* UTlDes::Decrypt( unsigned char* source, unsigned long length )
+unsigned char* my3des::Decrypt( unsigned char* source, unsigned long length )
 {
-	return UTlDes::CommonDecrypt(source, THE_SUBKEY, length);
+	return my3des::CommonDecrypt(source, THE_SUBKEY, length);
 }
 /*>--------------------------------------------------------------<*/
 /*>	加密
 /*>--------------------------------------------------------------<*/
-unsigned char* UTlDes::Encrypt( unsigned char* source, unsigned long length )
+unsigned char* my3des::Encrypt( unsigned char* source, unsigned long length )
 {
-	return UTlDes::CommonEncrypt(source,THE_SUBKEY,length);
+	return my3des::CommonEncrypt(source,THE_SUBKEY,length);
 }
 /*>--------------------------------------------------------------<*/
 /*>	3des加密
 /*>--------------------------------------------------------------<*/
-unsigned char* UTlDes::Decrypt3( unsigned char* source, unsigned long length )
+unsigned char* my3des::Decrypt3( unsigned char* source, unsigned long length )
 {
-	return UTlDes::CommonDecrypt3(source, THE_SUBKEY, length);
+	return my3des::CommonDecrypt3(source, THE_SUBKEY, length);
 }
 /*>--------------------------------------------------------------<*/
 /*>	3des加密
 /*>--------------------------------------------------------------<*/
-unsigned char* UTlDes::Encrypt3( unsigned char* source, unsigned long length )
+unsigned char* my3des::Encrypt3( unsigned char* source, unsigned long length )
 {
-	return UTlDes::CommonEncrypt3(source,THE_SUBKEY,length);
+	return my3des::CommonEncrypt3(source,THE_SUBKEY,length);
 }
 /*>--------------------------------------------------------------<*/
 /*>	加密
 /*>--------------------------------------------------------------<*/
-unsigned char* UTlDes::CommonEncrypt(unsigned char* s, const unsigned char skey[16][6],unsigned long sl)
+unsigned char* my3des::CommonEncrypt(unsigned char* s, const unsigned char skey[16][6],unsigned long sl)
 {
 	Des(s,skey,sl,false);
 	return s;
@@ -69,7 +69,7 @@ unsigned char* UTlDes::CommonEncrypt(unsigned char* s, const unsigned char skey[
 /*>--------------------------------------------------------------<*/
 /*>	解密
 /*>--------------------------------------------------------------<*/
-unsigned char* UTlDes::CommonDecrypt(unsigned char* s, const unsigned char skey[16][6],unsigned long sl)
+unsigned char* my3des::CommonDecrypt(unsigned char* s, const unsigned char skey[16][6],unsigned long sl)
 {
 	Des(s,skey,sl,true);
 	return s;
@@ -77,7 +77,7 @@ unsigned char* UTlDes::CommonDecrypt(unsigned char* s, const unsigned char skey[
 /*>--------------------------------------------------------------<*/
 /*>	3des加密
 /*>--------------------------------------------------------------<*/
-unsigned char* UTlDes::CommonEncrypt3(unsigned char* s, const unsigned char skey[16][6],unsigned long sl)
+unsigned char* my3des::CommonEncrypt3(unsigned char* s, const unsigned char skey[16][6],unsigned long sl)
 {
 	Des(s,skey,sl,false);
 	Des(s,skey,sl,false);
@@ -87,7 +87,7 @@ unsigned char* UTlDes::CommonEncrypt3(unsigned char* s, const unsigned char skey
 /*>--------------------------------------------------------------<*/
 /* 3des解密
 /*>--------------------------------------------------------------<*/
-unsigned char* UTlDes::CommonDecrypt3(unsigned char* s, const unsigned char skey[16][6],unsigned long sl)
+unsigned char* my3des::CommonDecrypt3(unsigned char* s, const unsigned char skey[16][6],unsigned long sl)
 {
 	Des(s,skey,sl,true);
 	Des(s,skey,sl,true);
@@ -97,7 +97,7 @@ unsigned char* UTlDes::CommonDecrypt3(unsigned char* s, const unsigned char skey
 /*>--------------------------------------------------------------<*/
 /* 产生子密钥
 /*>--------------------------------------------------------------<*/
-bool UTlDes::MakeKey(const unsigned char* PreKey,unsigned char NeKey[16][6])
+bool my3des::MakeKey(const unsigned char* PreKey,unsigned char NeKey[16][6])
 {
 	unsigned char A[7];
 	PerT_KPA(PreKey,A);
@@ -803,9 +803,9 @@ TestUnit()
 {
 unsigned char mingwen[] = "Sdrtgbhy123fg69";
 printf("Source: %s\n",mingwen);
-UTlDes::Encrypt(mingwen,16);
+my3des::Encrypt(mingwen,16);
 printf("Encrypted: %s\n",mingwen);
-UTlDes::Decrypt(mingwen,16);
+my3des::Decrypt(mingwen,16);
 printf("Decrypted: %s\n",mingwen);
 }
 };
