@@ -1,7 +1,7 @@
-#ifndef UTlDes_h__
-#define UTlDes_h__
+#ifndef my3des_h__
+#define my3des_h__
 
-namespace UTlDes
+namespace my3des
 {
 	/*-------------------------------------------------------------------------------------
 
@@ -55,4 +55,4 @@ namespace UTlDes
 
 
 
-#endif // UTlDes_h__
+#endif
